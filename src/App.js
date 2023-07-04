@@ -7,6 +7,8 @@ import {
 } from './ui-components';
 import { useState } from 'react';
 import { withAuthenticator } from '@aws-amplify/ui-react';
+// Allows us to clear out local data for two users using same machine
+import { DataStore } from 'aws-amplify';
 
 function App({ signOut }) {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -22,6 +24,7 @@ function App({ signOut }) {
           Button31632483: { onClick: () => setShowCreateModal(true) },
           Button31632487: {
             onClick: async () => {
+              await DataStore.clear();
               signOut();
             },
           },
