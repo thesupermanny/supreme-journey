@@ -6,9 +6,9 @@ import {
   UpdateNote,
 } from './ui-components';
 import { useState } from 'react';
-import logo from './logo.svg';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
-function App() {
+function App({ signOut }) {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [updateNote, setUpdateNote] = useState();
@@ -20,6 +20,11 @@ function App() {
         marginBottom='20px'
         overrides={{
           Button31632483: { onClick: () => setShowCreateModal(true) },
+          Button31632487: {
+            onClick: async () => {
+              signOut();
+            },
+          },
         }}
       />
       <div className='container'>
@@ -70,4 +75,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
