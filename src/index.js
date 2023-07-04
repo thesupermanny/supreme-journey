@@ -4,11 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//Tie Amplify backend
+import { Amplify } from 'aws-amplify';
+import config from './aws-exports';
+// Provider for the UI components to render correctly
+import { AmplifyProvider } from '@aws-amplify/ui-react';
+
+import '@aws-amplify/ui-react/styles.css';
+
+Amplify.configure(config);
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <AmplifyProvider>
     <App />
-  </React.StrictMode>
+  </AmplifyProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
